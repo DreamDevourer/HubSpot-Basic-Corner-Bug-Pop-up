@@ -1,16 +1,7 @@
 {% if module.on_popup %}
-	<!-- HTML to show when checked -->
-
-<a class="popup" data-fancybox href="#fancybox" >
-
-</a>
-
-	<!-- HTML to show when checked -->
 
 <div id="itsMe" class="promo-section-corner" style="opacity: 0; ">
-  
   <div class="promo-cover-corner">
-    
     <div class="promo-image-corner">
 
       {% if module.banner_image.src %}
@@ -20,6 +11,7 @@
       {% elif module.banner_image.size_type == 'auto_custom_max' %}
       {% set sizeAttrs = 'width="100%" height="auto" style="max-width: {{ module.banner_image.max_width }}px; max-height: {{ module.banner_image.max_height }}px"' %}
       {% endif %}
+	    <!-- On button click, load the closePopupCorner() function with the following values -->
       <span class="closeBtt"><button class="coreCloseBtt" onclick="closePopupCorner('itsMe',{{module.setcookie_time_minutes}})">X</button></span>
       <a class="link-controller" href="{{ module.popop_image_link }}" style="padding: 20px;">
         
@@ -33,25 +25,23 @@
            {{ module.button_title }}
        </span>
         </div>
-        
       </a>
-      {% endif %}
-    </div>
-    
-    
+        {% endif %}
+       </div>
       </div>
     </div> 
 
-
+{# <!--
 {% if module.enable_cta %}
 <style>
-  .promo-cover { padding:15px; background-color: white; }
+  .promo-cover { padding:15px; background-color: #fff; }
   .fancybox-bg { display: none;}
   .fancybox-container { z-index: 0; }
 </style>
 {% endif %}
 
-<script>
+{% require_js %}
+<script> --> #}
 
   $(window).load(function() {
    var val = getCookie('itsMe');
@@ -83,11 +73,12 @@ function closePopupCorner(div,days) {
     itsClosed = true;
   }
   
-   
+ // Apply the cookie display values  
  document.getElementById("itsMe").style.display='flex' ? 'none' : 'flex'
  document.cookie = div + "=" + days + ";expires=" + now.toGMTString();
 }
 
 </script>
+{% end_require_js %}
 
- {% endif %}   
+{% endif %}
