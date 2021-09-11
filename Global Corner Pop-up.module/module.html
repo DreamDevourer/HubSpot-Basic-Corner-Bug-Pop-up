@@ -1,0 +1,93 @@
+{% if module.on_popup %}
+	<!-- HTML to show when checked -->
+
+<a class="popup" data-fancybox href="#fancybox" >
+
+</a>
+
+	<!-- HTML to show when checked -->
+
+<div id="itsMe" class="promo-section-corner" style="opacity: 0; ">
+  
+  <div class="promo-cover-corner">
+    
+    <div class="promo-image-corner">
+
+      {% if module.banner_image.src %}
+      {% set sizeAttrs = 'width="{{ module.banner_image.width }}" height="{{ module.banner_image.height }}"' %}
+      {% if module.banner_image.size_type == 'auto' %}
+      {% set sizeAttrs = 'style="max-width: 100%; height: auto;"' %}
+      {% elif module.banner_image.size_type == 'auto_custom_max' %}
+      {% set sizeAttrs = 'width="100%" height="auto" style="max-width: {{ module.banner_image.max_width }}px; max-height: {{ module.banner_image.max_height }}px"' %}
+      {% endif %}
+      <span class="closeBtt"><button class="coreCloseBtt" onclick="closePopupCorner('itsMe',{{module.setcookie_time_minutes}})">X</button></span>
+      <a class="link-controller" href="{{ module.popop_image_link }}" style="padding: 20px;">
+        
+      <img class="corner-image-in" src="{{ module.banner_image.src }}" alt="{{ module.banner_image.alt }}" {{ sizeAttrs }} style="max-width: 200px; padding: 10px;">
+      
+        <div class="rightText">
+        <h4 style="color: white;">
+          {{ module.pop_up_headline }}
+      </h4>
+      <span class="leadingModal-corner-btt" style="padding: 5px;">  
+           {{ module.button_title }}
+       </span>
+        </div>
+        
+      </a>
+      {% endif %}
+    </div>
+    
+    
+      </div>
+    </div> 
+
+
+{% if module.enable_cta %}
+<style>
+  .promo-cover { padding:15px; background-color: white; }
+  .fancybox-bg { display: none;}
+  .fancybox-container { z-index: 0; }
+</style>
+{% endif %}
+
+<script>
+
+  $(window).load(function() {
+   var val = getCookie('itsMe');
+   console.log(val)
+   
+    // On document load, after 1200ms opacity will increase to 1
+   $("#itsMe").delay(1200).animate({opacity:1},3000)
+    
+  if(val >= '1'){
+    // If the cookie value/days is more than 1 then hide it.
+    document.getElementById("itsMe").style.display = "none";
+    document.getElementById("itsMe").style.opacity = "0";
+  }
+  });
+  
+  // Close function
+function closePopupCorner(div,days) {
+  var itsClosed = false;
+  var popupRoot = document.getElementById("itsMe");
+  var now = new Date;
+  
+  now.setTime(now.getTime() + (days * 24 * 60 * 60 * 1000));
+  
+  if (popupRoot.style.display === "none"){
+    popupRoot.style.display = "flex";
+    itsClosed = false;
+  } else {
+    popupRoot.style.display = "none";
+    itsClosed = true;
+  }
+  
+   
+ document.getElementById("itsMe").style.display='flex' ? 'none' : 'flex'
+ document.cookie = div + "=" + days + ";expires=" + now.toGMTString();
+}
+
+</script>
+
+ {% endif %}   
