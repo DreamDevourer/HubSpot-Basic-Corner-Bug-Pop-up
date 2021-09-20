@@ -1,6 +1,10 @@
-# HubSpot Basic Corner Bug Pop up
-Simple and resourceful Promotional Corner Pop-up Module for your HubSpot CMS. This was a browser cookie study using int values to translate in days after the user closed the pop-up, making a countdown until the pop-up starts appearing again.
-<br>
+<h1 align="center">HubSpot Basic Corner Bug Pop up 📌</h1>
+
+<p align="center">Simple and resourceful Promotional Corner Pop-up Module for your HubSpot CMS. This was a browser cookie study using int values to translate in days after the user closed the pop-up, making a countdown until the pop-up starts appearing again.</p>
+
+<p align="center">
+  <a href="./LICENSE">License</a>
+
 ## How it would look
 This module also supports HubSpot built-in CTA and styling options.
 <br>
